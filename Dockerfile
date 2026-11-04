@@ -16,7 +16,7 @@ FROM gcr.io/distroless/base
 
 COPY --from=base /app/main .
 
-COPY --from=base /app/static ./static
+#COPY --from=base /app/static ./static
 
 EXPOSE 8080
 #run the app
