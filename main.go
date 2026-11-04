@@ -1,28 +1,40 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
 
+// welcome writes a small HTML page that greets the visitor
+func welcome(w http.ResponseWriter, title string) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprintf(w, `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>%s</title>
+</head>
+<body>
+  <h1>Hi, welcome to the %s page!</h1>
+</body>
+</html>`, title, title)
+}
+
 func homePage(w http.ResponseWriter, r *http.Request) {
-	// Render the home html page from static folder
-	http.ServeFile(w, r, "static/home.html")
+	welcome(w, "Home")
 }
 
 func coursePage(w http.ResponseWriter, r *http.Request) {
-	// Render the course html page
-	http.ServeFile(w, r, "static/courses.html")
+	welcome(w, "Courses")
 }
 
 func aboutPage(w http.ResponseWriter, r *http.Request) {
-	// Render the about html page
-	http.ServeFile(w, r, "static/about.html")
+	welcome(w, "About")
 }
 
 func contactPage(w http.ResponseWriter, r *http.Request) {
-	// Render the contact html page
-	http.ServeFile(w, r, "static/contact.html")
+	welcome(w, "Contact")
 }
 
 func main() {
