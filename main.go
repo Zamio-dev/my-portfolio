@@ -12,7 +12,7 @@ func landingPage(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	http.HandleFunc("/", landingpage)
+	http.HandleFunc("/", landingPage)
 
 	err := http.ListenAndServe("0.0.0.0:8080", nil)
 	if err != nil {
