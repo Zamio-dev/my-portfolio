@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to This Page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                        'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+                        },
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        /* Custom Glassmorphism styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Color Theme Presets (Dynamic CSS Variables) */
+        :root {
+            --color-primary-1: #6366f1; /* Indigo */
+            --color-primary-2: #a855f7; /* Purple */
+            --color-primary-3: #ec4899; /* Pink */
+        }
+        
+        /* Sunset Theme */
+        .theme-sunset {
+            --color-primary-1: #f97316;
+            --color-primary-2: #e11d48;
+            --color-primary-3: #9333ea;
+        }
+
+        /* Emerald Theme */
+        .theme-emerald {
+            --color-primary-1: #10b981;
+            --color-primary-2: #06b6d4;
+            --color-primary-3: #3b82f6;
+        }
+
+        /* Ocean Theme */
+        .theme-ocean {
+            --color-primary-1: #0284c7;
+            --color-primary-2: #6366f1;
+            --color-primary-3: #8b5cf6;
+        }
+    </style>
+</head>
+<body class="h-full overflow-x-hidden antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 flex flex-col justify-between">
+
+    <!-- Ambient Background Blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div id="blob1" class="absolute -top-24 -left-24 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 bg-indigo-300 dark:bg-indigo-900"></div>
+        <div id="blob2" class="absolute top-1/2 -right-24 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 bg-purple-300 dark:bg-purple-900" style="animation-delay: 2s;"></div>
+        <div id="blob3" class="absolute -bottom-24 left-1/3 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 bg-pink-300 dark:bg-pink-900" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Header / Navigation Bar -->
+    <header class="relative z-10 w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <!-- Logo / Brand -->
+        <div class="flex items-center space-x-2 cursor-pointer group">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg shadow-md transition-transform duration-300 group-hover:scale-105">
+                W
+            </div>
+            <span class="font-semibold text-lg tracking-tight text-slate-900 dark:text-white">Welcome</span>
+        </div>
+
+        <!-- Controls: Color Palettes & Dark/Light Toggle -->
+        <div class="flex items-center space-x-3">
+            <!-- Palette Selector Menu -->
+            <div class="relative inline-block text-left">
+                <div class="flex items-center space-x-1.5 p-1.5 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
+                    <button onclick="setTheme('default')" title="Indigo Violet Theme" class="w-5 h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-indigo-400 ring-offset-1 dark:ring-offset-slate-900"></button>
+                    <button onclick="setTheme('theme-sunset')" title="Sunset Theme" class="w-5 h-5 rounded-full bg-gradient-to-r from-orange-500 to-rose-500 transition-transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-rose-400 ring-offset-1 dark:ring-offset-slate-900"></button>
+                    <button onclick="setTheme('theme-emerald')" title="Emerald Theme" class="w-5 h-5 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500 transition-transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-emerald-400 ring-offset-1 dark:ring-offset-slate-900"></button>
+                    <button onclick="setTheme('theme-ocean')" title="Ocean Theme" class="w-5 h-5 rounded-full bg-gradient-to-r from-sky-500 to-indigo-500 transition-transform hover:scale-125 focus:outline-none focus:ring-2 focus:ring-sky-400 ring-offset-1 dark:ring-offset-slate-900"></button>
+                </div>
+            </div>
+
+            <!-- Dark / Light Mode Toggle Button -->
+            <button id="themeToggleBtn" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode" class="p-2.5 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-all duration-300 shadow-sm hover:shadow">
+                <!-- Sun Icon (Light Mode) -->
+                <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <!-- Moon Icon (Dark Mode) -->
+                <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-3xl w-full">
+            
+            <!-- Glassmorphic Card Wrapper -->
+            <div class="glass-card rounded-3xl p-8 md:p-14 shadow-2xl shadow-indigo-500/10 dark:shadow-black/40 text-center transition-all duration-500">
+                
+                <!-- Small Badge -->
+                <div class="animate-fade-in-down inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/70 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 shadow-sm mb-8">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                    </span>
+                    <span class="text-xs font-medium tracking-wide uppercase text-slate-600 dark:text-slate-300">Simple & Beautiful Experience</span>
+                </div>
+
+                <!-- Main Heading with Dynamic Gradient Text -->
+                <h1 class="animate-fade-in-down text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    <span id="headingText" class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 transition-all duration-500">
+                        Welcome to my website
+                    </span>
+                </h1>
+
+                <!-- Subtitle / Inviting Message -->
+                <p class="animate-fade-in-up text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                    Step into a clean, modern space designed for simplicity and comfort. 
+                    Explore elegant interactive details and customize your visual experience effortlessly.
+                </p>
+
+                <!-- Call to Action Buttons -->
+                <div class="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <!-- Primary CTA Button -->
+                    <button onclick="showToast('Thank you for exploring! Everything is set up.')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center space-x-2 group">
+                        <span>Get Started</span>
+                        <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Secondary CTA Button -->
+                    <button onclick="showToast('Theme palette updated!')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center space-x-2">
+                        <span>Learn More</span>
+                    </button>
+                </div>
+
+                <!-- Subtle Features Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-10 border-t border-slate-200/60 dark:border-slate-800/60">
+                    <div class="p-3 rounded-2xl hover:bg-white/40 dark:hover:bg-slate-800/40 transition-colors">
+                        <div class="text-indigo-500 dark:text-indigo-400 font-semibold text-base mb-1">Minimalist Design</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Clean lines and focused hierarchy for maximum clarity.</div>
+                    </div>
+                    <div class="p-3 rounded-2xl hover:bg-white/40 dark:hover:bg-slate-800/40 transition-colors">
+                        <div class="text-purple-500 dark:text-purple-400 font-semibold text-base mb-1">Dynamic Themes</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Switch color palettes dynamically with a click.</div>
+                    </div>
+                    <div class="p-3 rounded-2xl hover:bg-white/40 dark:hover:bg-slate-800/40 transition-colors">
+                        <div class="text-pink-500 dark:text-pink-400 font-semibold text-base mb-1">Smooth Interactions</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Gentle micro-animations crafted for delight.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card px-5 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 text-slate-800 dark:text-slate-100 text-sm font-medium border border-slate-200/80 dark:border-slate-700/80">
+            <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+            <span id="toastMessage">Action completed successfully!</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full max-w-6xl mx-auto px-6 py-6 text-center text-xs text-slate-400 dark:text-slate-500">
+        <p>© 2026 All rights reserved.</p>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+        }
+
+        // Color Palettes Config
+        const colorThemes = {
+            'default': {
+                heading: 'bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400',
+                b1: 'bg-indigo-300 dark:bg-indigo-900',
+                b2: 'bg-purple-300 dark:bg-purple-900',
+                b3: 'bg-pink-300 dark:bg-pink-900'
+            },
+            'theme-sunset': {
+                heading: 'bg-gradient-to-r from-orange-500 via-rose-500 to-purple-600 dark:from-orange-400 dark:via-rose-400 dark:to-purple-400',
+                b1: 'bg-orange-300 dark:bg-orange-950',
+                b2: 'bg-rose-300 dark:bg-rose-950',
+                b3: 'bg-purple-300 dark:bg-purple-950'
+            },
+            'theme-emerald': {
+                heading: 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400',
+                b1: 'bg-emerald-300 dark:bg-emerald-950',
+                b2: 'bg-teal-300 dark:bg-teal-950',
+                b3: 'bg-cyan-300 dark:bg-cyan-950'
+            },
+            'theme-ocean': {
+                heading: 'bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400',
+                b1: 'bg-sky-300 dark:bg-sky-950',
+                b2: 'bg-blue-300 dark:bg-blue-950',
+                b3: 'bg-indigo-300 dark:bg-indigo-950'
+            }
+        };
+
+        // Theme Switch Function
+        function setTheme(themeKey) {
+            const heading = document.getElementById('headingText');
+            const b1 = document.getElementById('blob1');
+            const b2 = document.getElementById('blob2');
+            const b3 = document.getElementById('blob3');
+            const theme = colorThemes[themeKey];
+
+            if (!theme) return;
+
+            // Reset heading classes
+            heading.className = 'bg-clip-text text-transparent transition-all duration-500 ' + theme.heading;
+
+            // Update ambient background blob colors
+            b1.className = `absolute -top-24 -left-24 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 ${theme.b1}`;
+            b2.className = `absolute top-1/2 -right-24 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 ${theme.b2}`;
+            b3.className = `absolute -bottom-24 left-1/3 w-96 h-96 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-70 animate-blob transition-colors duration-700 ${theme.b3}`;
+        }
+
+        // Custom Toast Notification System
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
