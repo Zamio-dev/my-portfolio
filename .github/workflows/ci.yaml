@@ -55,7 +55,7 @@ jobs:
   push:
     runs-on: ubuntu-latest
 
-    needs: build
+    needs: [build, code-quality]
 
     steps:
     - name: Checkout repository
