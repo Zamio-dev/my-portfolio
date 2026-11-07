@@ -2,7 +2,7 @@
 
 Go based web app deployed end to end with Docker, Kubernetes and Helm on AWS EKS. GitHub Actions builds, tests and lints the code, pushes the image to Docker Hub and updates the Helm chart tag. ArgoCD picks up the new tag and rolls it out.
 
-![go-web-app home page served from the EKS cluster at go-web-app.local](screenshot-home.png)
+![go-web-app home page served from the EKS cluster at go-web-app.local](./screenshot-home.png)
 
 ## What this project all about
 
