@@ -11,6 +11,8 @@ on:
       - 'helm/**'
       - 'k8s/**'
       - 'README.md'
+      - 'screenshot-home.jpeg'
+      - '.github/**'
   workflow_dispatch:
 
 jobs:
