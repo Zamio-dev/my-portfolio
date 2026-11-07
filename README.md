@@ -127,7 +127,7 @@ go test ./...
 go build -o go-web-app
 ```
 
-- `go run main.go` compiles and starts the server in one go. It listens on port 8080. Open `http://localhost:8080/home`.
+- `go run main.go` compiles and starts the server in one go. It listens on port 8080. Open `http://localhost:8080`.
 - `go test ./...` runs the tests in the current folder and every folder below it. `./...` means "all packages here and under here".
 - `go build -o go-web-app` compiles to a binary. `-o` sets the output file name.
 
